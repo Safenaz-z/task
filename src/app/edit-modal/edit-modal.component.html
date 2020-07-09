@@ -1,0 +1,96 @@
+<html>
+
+<head>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"
+    integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+
+
+</head>
+
+<body>
+
+  <form  (submit)="saveData()" [formGroup]="editForm">
+    <div class="content">
+      <div class="grid-container">
+
+        <div class="grid-style">
+          <p>
+            User Data </p>
+        </div>
+        <div class="grid-style">
+          <p>
+            Image </p>
+        </div>
+      </div>
+      <div class="grid-container">
+
+        <div class="grid-style">
+          <input type="text" formControlName="name" (input)="nameChange($event.target.value)"
+            placeholder="Captain Name" class="userData" [(ngModel)]="user_edit.name" />
+
+          <p *ngIf="editForm.controls.name.hasError('minlength' ) && editForm.controls.name.invalid && (editForm.controls.name.dirty || editForm.controls.name.touched)"
+            class="errors">
+            Name must be 3 letters or more </p>
+          <p class="errors"
+            *ngIf="editForm.controls.name.hasError('required') && editForm.controls.name.invalid && (editForm.controls.name.dirty || editForm.controls.name.touched)"
+            class="errors">
+            Must fill in the name
+          </p>
+          <input type="text" formControlName="mobile" (input)="mobileChange($event.target.value)"
+            placeholder="Mobile" class="userData" [(ngModel)]="user_edit.phone" />
+          <p *ngIf="editForm.controls.mobile.hasError('pattern' ) && editForm.controls.mobile.invalid && (editForm.controls.mobile.dirty || editForm.controls.mobile.touched)"
+            class="errors mobile-errors">
+            Mobile number not valid
+          </p>
+          <p class="errors"
+            *ngIf="editForm.controls.mobile.hasError('required') && editForm.controls.mobile.invalid && (editForm.controls.mobile.dirty || editForm.controls.mobile.touched)"
+            class="errors mobile-errors">
+            Mobile number is required
+          </p>
+
+          <input type="text" formControlName="email" (input)="emailChange($event.target.value)"
+            placeholder="email" class="userData" [(ngModel)]="user_edit.email" />
+          <p *ngIf="editForm.controls.email.hasError('pattern' ) && editForm.controls.email.invalid && (editForm.controls.email.dirty || editForm.controls.email.touched)"
+            class="errors">
+            Email format not valid
+          </p>
+       <!--    <input type="number"  formControlName="age" (input)="captainChange($event.target.value)"
+          placeholder="Age" [(ngModel)]="driver_edit.age" class="input_tripno"  /> -->
+     
+        </div>
+        <div class="grid-style">
+
+
+          <div id="upload_button">
+            <label>
+              <input type="file" (change)="fileChangeEvent($event.target.files)" ngf-select ng-model="new_files"
+                ng-change="fs.uploadFiles(new_files)" multiple>
+              <div class="user_img">
+                <img *ngIf="user_edit.image !=''" src="{{user_edit.image}}" > 
+                <img *ngIf="user_edit.image ==''" src="/assets/avatar.png" > 
+
+              </div>
+            </label>
+          </div>
+
+        </div>
+      
+
+
+      </div>
+   
+    
+
+      <div class="btn-container">
+        <button type="button" id="btnstyle" class="btn btn-success" (click)="onNoClick()">CANCEL</button>
+        <button type="submit" id="btnstyle2" class="btn btn-success">SAVE</button>
+      </div>
+
+    </div>
+  </form>
+
+  
+</body>
+
+
+</html>

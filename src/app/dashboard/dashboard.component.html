@@ -1,0 +1,73 @@
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  
+  <body>
+      <div class="sidenav" id="myDIV"  >
+          <div class="nav-container" >
+         
+              <div class="link_container" routerLinkActive="active-link"  (click)="ShowTable()">
+        
+           
+              <div class="img_container">
+                <img src="/assets/people-24px.svg">
+                <a  >Users</a>
+              </div>
+              </div>
+              <hr class="divider" >
+              <div  class="link_container"  routerLinkActive="active-link"  (click)=" logout()">
+        
+      
+                <div class="img_container">
+                  <img src="/assets/baseline-lock-24px.svg">   <a  >Log out</a>
+                </div>
+                </div>
+          </div>
+         
+        </div>
+
+    <div id="card-container" *ngIf="this.showUsers">
+     
+        <div class="table-responsive">
+            <table class="table table-bordered table-striped">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Name</th>
+                  <th>Phone</th>
+                  <th>Images</th>
+                  <th>Email</th>
+                  <th>Edit user</th>
+                  <th>                      <button class="btn" (click)="addNewUser()"><i class="fa fa-plus" aria-hidden="true" ></i> 
+                    Create new user</button>
+                  </th>
+
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let user of users; let i=index">
+                  <td>
+                    {{i+1}}
+                  </td>
+                  <td>{{user.name}}</td>
+                  <td>{{user.phone}}</td>
+                  <td>   
+                             <img *ngIf="user.image !=''" [src]="user.image" class="img-style"  />
+                             <img *ngIf="user.image ==''" src="/assets/avatar.png" class="img-style"  />
+
+                  </td>
+                  <td>{{user.email}}</td>
+                  <td>
+                      <button class="btn" (click)="openEditDialog(user)"><i class='fas fa-pen'></i> Edit</button> &nbsp;
+                  </td>
+
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        
+  
+  </body>
+  
+  

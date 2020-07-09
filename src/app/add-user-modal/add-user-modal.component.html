@@ -1,0 +1,126 @@
+<html>
+
+<head>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"
+    integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+
+
+</head>
+
+<body>
+
+  <form (submit)="goToConfirm()" [formGroup]="userForm">
+    <div class="content">
+      <div class="grid-container">
+
+        <div class="grid-style">
+          <p>
+            User Data </p>
+        </div>
+        <div class="grid-style">
+          <p>
+            Image </p>
+        </div>
+      </div>
+      <div class="grid-container">
+
+        <div class="grid-style">
+          <input type="text" formControlName="name" 
+            placeholder="Captain Name" class="userData"  [(ngModel)]="this.account.name" />
+
+            <p  *ngIf="userForm.controls.name.hasError('minlength' ) && userForm.controls.name.invalid && (userForm.controls.name.dirty || userForm.controls.name.touched) " class="errors">
+              Name must be 3 letters or more </p>
+            <p  *ngIf="userForm.controls.name.hasError('maxlength' ) && userForm.controls.name.invalid && (userForm.controls.name.dirty || userForm.controls.name.touched) " class="errors">
+                Name max length 25 letters </p>
+            <p   *ngIf="userForm.controls.name.hasError('required') && userForm.controls.name.invalid && (userForm.controls.name.dirty || userForm.controls.name.touched)" class="errors">
+              Must fill in the name    
+              </p>
+              <p   *ngIf="userForm.controls.name.hasError('pattern') && userForm.controls.name.invalid && (userForm.controls.name.dirty || userForm.controls.name.touched)" class="errors">
+                  Name must be letters only
+                </p>
+          <input type="text" formControlName="phone" 
+            placeholder="Mobile" class="userData"[(ngModel)]="this.account.phone" />
+            <p   *ngIf="userForm.controls.phone.hasError('pattern' ) && userForm.controls.phone.invalid && (userForm.controls.phone.dirty || userForm.controls.phone.touched)" class="errors mobile-errors">
+              Mobile number not valid
+          </p>
+          <p   *ngIf="userForm.controls.phone.hasError('required') && userForm.controls.phone.invalid && (userForm.controls.phone.dirty || userForm.controls.phone.touched)" class="errors mobile-errors">
+          Mobile number is required
+          </p>
+          <input type="text"  
+            placeholder="email" class="userData" formControlName="email" [(ngModel)]="this.account.email" />
+            <p   *ngIf="userForm.controls.email.hasError('required') && userForm.controls.email.invalid && (userForm.controls.email.dirty || userForm.controls.email.touched)" class="errors">
+              Email is reuired
+              </p>
+            <p  *ngIf="userForm.controls.email.hasError('pattern' ) && userForm.controls.email.invalid && (userForm.controls.email.dirty || userForm.controls.email.touched)" class="errors">
+              Email format not valid
+          </p>
+          <input type="password" class="userData" placeholder="password" formControlName="password" [(ngModel)]="account.password"/>
+          <p  *ngIf="userForm.controls.password.hasError('minlength' ) && userForm.controls.password.invalid && (userForm.controls.password.dirty || userForm.controls.password.touched) " class="errors">
+            <!--6digits-numbers/letters-caps/small-->
+            Password must be 8 letters or more
+        </p>
+        <p  *ngIf="userForm.controls.password.hasError('maxlength' ) && userForm.controls.password.invalid && (userForm.controls.password.dirty || userForm.controls.password.touched)" class="errors">
+          <!--6digits-numbers/letters-caps/small-->
+          Password max length 25 letters
+        </p>
+        <p   *ngIf="userForm.controls.password.hasError('required') && userForm.controls.password.invalid && (userForm.controls.password.dirty || userForm.controls.password.touched)" class="errors">
+            Password is required
+        </p>
+        <p  *ngIf="userForm.controls.password.hasError('pattern') && userForm.controls.password.invalid && (userForm.controls.password.dirty || userForm.controls.password.touched)" class="errors">
+            Password is not valid
+        </p>
+        
+        <input type="password" class="userData" placeholder="Confirm password" formControlName="confirmpassword"/>
+        <ng-container *ngFor="let error of error_messages.confirmpassword">
+					<div class="error-message" *ngIf="userForm.get('confirmpassword').hasError(error.type) && (userForm.get('confirmpassword').dirty || userForm.get('confirmpassword').touched)">
+						{{ error.message }}
+					</div>
+				</ng-container>
+   <!--      <div *ngIf="userForm.controls.confirmPassword.hasError('required') && userForm.controls.confirmPassword.invalid && (userForm.controls.confirmPassword.dirty || userForm.controls.confirmPassword.touched)" class="errors">Confirm Password is required</div>
+        <div *ngIf="passwordNotMatch" class="errors"> 
+          Passwords do not match
+        </div>  --> 
+      <div class="errors">
+        {{ userForm.errors.message }} 
+
+      </div>
+
+        </div>
+        <div class="grid-style">
+
+
+          <div id="upload_button">
+            <label>
+              <input type="file" (change)="addNewImage($event.target.files)" ngf-select ng-model="new_files" ng-change="fs.uploadFiles(new_files)" multiple>
+              <div class="user_img"  *ngIf="this.fileToUpload != null">
+                    <img  src="{{this.account.image}}" > 
+                 
+                </div> 
+                <div class="user_img"  *ngIf="this.fileToUpload == null">
+                  <img  src="/assets/avatar.png" > 
+
+              </div> 
+                                 </label>
+          </div>
+
+        </div>
+      
+
+
+      </div>
+   
+    
+
+      <div class="btn-container">
+        <button type="button" id="btnstyle" class="btn btn-success" (click)="onNoClick()">CANCEL</button>
+        <button type="submit" id="btnstyle2" class="btn btn-success">SAVE</button>
+      </div>
+
+    </div>
+  </form>
+
+  
+</body>
+
+
+</html>

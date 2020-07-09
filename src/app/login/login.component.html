@@ -1,0 +1,66 @@
+<!-- Default form login -->
+<!-- <form class="text-center border border-light p-5">
+
+  <p class="h4 mb-4">Login</p>
+
+  <input type="email" id="defaultLoginFormEmail" class="form-control mb-4" placeholder="E-mail">
+
+  <input type="password" id="defaultLoginFormPassword" class="form-control mb-4" placeholder="Password">
+
+
+  <button mdbBtn color="info" block="true" class="my-4" type="submit" (click)="login()">Sign in</button>
+
+
+</form> -->
+<!-- Default form login -->
+<div class="wrapper fadeInDown loginContainer" style="  ">
+    <div id="formContent">
+      <!-- Tabs Titles -->
+      <h2 class="active"> Sign In </h2>
+  
+    
+      <!-- Login Form -->
+      <form [formGroup]="loginForm" (ngSubmit)="login()">
+        <input type="text"  formControlName="user_name" [(ngModel)]="account.username" id="defaultLoginFormEmail"  placeholder="E-mail/Phone"
+         class="fadeIn second" name="login" >
+        <input type="text" id="password" placeholder="Password" formControlName="password" [(ngModel)]="account.password" class="fadeIn third" name="login" >
+        <input type="submit" class="fadeIn fourth" value="Log In">
+      </form>
+  
+      <!-- Remind Passowrd -->
+      <div id="formFooter">
+        <a class="underlineHover" href="#">Forgot Password?</a>
+      </div>
+  
+    </div>
+  </div>
+
+
+<!-- <div class="container">
+        <div class="card">
+            <form [formGroup]="loginForm" (ngSubmit)="login()" class="text-center border border-light p-5">
+                <p class="h4 mb-4">Login</p>
+            
+            <div  >
+                <div class="col-md-12 col-sm-12 col-xs-12">
+            
+               <input type="text"  formControlName="user_name" [(ngModel)]="account.email" id="defaultLoginFormEmail" class="form-control mb-4" placeholder="E-mail/Phone" />
+                 
+                </div>
+            </div>
+            <br>
+            <div  >
+              <div class="col-md-12 col-sm-12 col-xs-12">
+              <input type="password" id="defaultLoginFormPassword" class="form-control mb-4" placeholder="Password" formControlName="password" [(ngModel)]="account.password"/>
+               
+              </div>
+            </div>
+            <div class="col-xs-12 form-group text-center" >
+              <button  block="true" class="my-4 btn btn-primary" type="submit" type="submit">Login</button>
+            </div>
+            </form>
+        </div>
+      
+      
+      </div>
+ -->
