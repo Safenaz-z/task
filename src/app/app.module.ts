@@ -11,12 +11,10 @@ import { MaterialsModule } from './materials/materials.module';
 import { AddUserModalComponent } from './add-user-modal/add-user-modal.component';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { ArabicDashboardComponent } from './arabic-dashboard/arabic-dashboard.component';
 @NgModule({
   declarations: [
     AppComponent,
     AddUserModalComponent,
-    ArabicDashboardComponent,
   ],
   entryComponents:[
     AddUserModalComponent,
